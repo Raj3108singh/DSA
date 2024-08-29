@@ -40,13 +40,29 @@ class BinarySearchTree {
       }
     }
   }
+
+  find(value) {
+    if (this.root.value === value) return this.root;
+    let currentNode = this.root;
+    var foundData = false;
+
+    while (!foundData && currentNode) {
+      // added current node to check if nodes are not there for any further assignment, which means searched value is
+      // not present in this bst
+      if (currentNode.value == value) {
+        foundData = true;
+        return currentNode; // return true;
+      } else if (value < currentNode.value) {
+        currentNode = currentNode.left;
+      } else if (value > currentNode.value) {
+        currentNode = currentNode.right;
+      }
+    }
+    return 'Not Found';
+  }
 }
 
-//      10
-//   5     13
-// 2  7  11  16
-
-var tree = new BinarySearchTree();
+let tree = new BinarySearchTree();
 tree.insert(10);
 tree.insert(5);
 tree.insert(13);
@@ -54,3 +70,4 @@ tree.insert(11);
 tree.insert(2);
 tree.insert(16);
 tree.insert(7);
+tree.find(162);
